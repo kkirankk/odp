@@ -103,7 +103,20 @@ typedef union odp_cls_pmr_terms_t {
 		/** Custom layer 3 match rule. PMR offset is counted from
 		 *  the start of layer 3 in the packet. */
 		uint64_t        custom_l3:1;
-
+		/** IGMP Group address */
+		uint64_t	igmp_grp_addr:1;
+		/** ICMP identifier */
+		uint64_t	icmp_id:1;
+		/** ICMP type */
+		uint64_t	icmp_type:1;
+		/** ICMP code */
+		uint64_t	icmp_code:1;
+		/** Source SCTP port */
+		uint64_t	sctp_sport:1;
+		/** Destination SCTP port */
+		uint64_t	sctp_dport:1;
+		/** GTPU Tunnel endpoint identifier, with UDP port 2152 */
+		uint64_t	gtpu_teid:1;
 	} bit;
 	/** All bits of the bit field structure */
 	uint64_t all_bits;
@@ -551,6 +564,27 @@ typedef enum {
 	 * Custom L3 rules may be combined with other PMRs.
 	 */
 	ODP_PMR_CUSTOM_L3,
+
+	/** IGMP Group address (val_sz = 4) */
+	ODP_PMR_IGMP_GRP_ADDR,
+
+	/** ICMP identifier (val_sz = 2) */
+	ODP_PMR_ICMP_ID,
+
+	/** ICMP type (val_sz = 1) */
+	ODP_PMR_ICMP_TYPE,
+
+	/** ICMP code (val_sz = 1) */
+	ODP_PMR_ICMP_CODE,
+
+	/** Source SCTP port (val_sz = 2) */
+	ODP_PMR_SCTP_SPORT,
+
+	/** Destination SCTP port (val_sz = 2) */
+	ODP_PMR_SCTP_DPORT,
+
+	/** GTPU Tunnel endpoint identifier  (val_sz = 4), with UDP port 2152 */
+	ODP_PMR_GTPU_TEID,
 
 	/** Inner header may repeat above values with this offset */
 	ODP_PMR_INNER_HDR_OFF = 32
